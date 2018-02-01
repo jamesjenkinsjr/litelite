@@ -1,9 +1,11 @@
 //variables
 const resetButton = document.querySelector('#reset');
-const box = document.querySelector('.box');
+const boxes = document.querySelectorAll('.box');
 
 //eventListeners
-box.addEventListener('click', toggleRed);
+boxes.forEach(function(box, index){
+    addEventListener('click', toggleRed);    
+})
 resetButton.addEventListener('click', resetBoard)
 
 //functions
