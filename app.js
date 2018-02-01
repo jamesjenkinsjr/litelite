@@ -16,5 +16,7 @@ function toggleRed(e) {
 }
 
 function resetBoard(e) {
-    console.log('reset the board');
+    boxes.forEach((box, index) => {
+        box.classList.remove('red');
+    });
 }
