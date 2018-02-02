@@ -11,15 +11,30 @@ gridSizeForm.addEventListener('submit', changeGrid);
 changeGrid();
 //functions
 
-function toggleRed(e) {
+function toggleColor(e) {
     const element = e.target;
-    element.classList.toggle('red');
+    if (element.classList.contains('blue')) {
+        element.classList.remove('blue');
+    } else if (!element.classList.contains('red')) {
+        element.classList.add('red');
+    } else {
+        element.classList.replace('red','blue');
+    }
 }
+
+// function toggleColor(e) {
+//     const element = e.target;
+//     for (let i = 0; i < max; i += 1) {
+//         const red = element.classList.add('red');
+        
+//     }
+// }
 
 function resetBoard(e) {
     const boxes = document.querySelectorAll('.box');
     boxes.forEach((box, index) => {
         box.classList.remove('red');
+        box.classList.remove('blue');
     });
 }
 
@@ -58,7 +73,7 @@ function makeGrid(size) {
         for(let i = 0; i < size; i += 1) {
             const box = document.createElement('div');
             box.classList.add('box');
-            box.addEventListener('click', toggleRed);
+            box.addEventListener('click', toggleColor);
             column.appendChild(box);
         }
         rows.push(row);
