@@ -1,16 +1,14 @@
 //variables
 const resetButton = document.querySelector('#reset');
-const boxes = document.querySelectorAll('.box');
 const gridSizeForm = document.querySelector('#grid-size');
 const main = document.querySelector('main');
 
 //eventListeners
-boxes.forEach(function(box, index){
-    box.addEventListener('click', toggleRed);    
-})
 resetButton.addEventListener('click', resetBoard);
 gridSizeForm.addEventListener('submit', changeGrid);
 
+//initialize/start
+changeGrid();
 //functions
 
 function toggleRed(e) {
@@ -19,13 +17,16 @@ function toggleRed(e) {
 }
 
 function resetBoard(e) {
+    const boxes = document.querySelectorAll('.box');
     boxes.forEach((box, index) => {
         box.classList.remove('red');
     });
 }
 
 function changeGrid(e) {
-    e.preventDefault();
+    if(e) {
+        e.preventDefault();    
+    }    
     const gridSizeValue = +gridSizeForm.querySelector('input:checked').value;
     const grid = makeGrid(gridSizeValue);
     main.innerHTML = '';
