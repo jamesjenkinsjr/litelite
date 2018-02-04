@@ -2,25 +2,40 @@
 const resetButton = document.querySelector('#reset');
 const gridSizeForm = document.querySelector('#grid-size');
 const main = document.querySelector('main');
+const picker = document.querySelector('#colorpicker');
+
 
 //eventListeners
 resetButton.addEventListener('click', resetBoard);
 gridSizeForm.addEventListener('submit', changeGrid);
+picker.addEventListener('input', colorPicker, false);
+picker.addEventListener('change', colorPicker, false);
+
+
 
 //initialize/start
 changeGrid();
 //functions
 
-function toggleColor(e) {
+// function toggleColor(e) {
+//     const element = e.target;
+//     if (element.classList.contains('blue')) {
+//         element.classList.remove('blue');
+//     } else if (!element.classList.contains('red')) {
+//         element.classList.add('red');
+//     } else {
+//         element.classList.replace('red','blue');
+//     }
+// }
+function colorPicker(e) {
     const element = e.target;
-    if (element.classList.contains('blue')) {
-        element.classList.remove('blue');
-    } else if (!element.classList.contains('red')) {
-        element.classList.add('red');
+    if(!element.style.backgroundColor) {
+        element.style.backgroundColor = picker.value;
     } else {
-        element.classList.replace('red','blue');
+        element.style.backgroundColor = '';
     }
-}
+} 
+
 
 // function toggleColor(e) {
 //     const element = e.target;
@@ -73,7 +88,7 @@ function makeGrid(size) {
         for(let i = 0; i < size; i += 1) {
             const box = document.createElement('div');
             box.classList.add('box');
-            box.addEventListener('click', toggleColor);
+            box.addEventListener('click', colorPicker);
             column.appendChild(box);
         }
         rows.push(row);
