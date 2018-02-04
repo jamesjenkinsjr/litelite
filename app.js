@@ -48,8 +48,7 @@ function colorPicker(e) {
 function resetBoard(e) {
     const boxes = document.querySelectorAll('.box');
     boxes.forEach((box, index) => {
-        box.classList.remove('red');
-        box.classList.remove('blue');
+        box.style.backgroundColor = '';
     });
 }
 
